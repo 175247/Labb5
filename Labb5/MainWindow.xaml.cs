@@ -21,6 +21,8 @@ namespace Labb5
     public partial class MainWindow : Window
     {
         List<User> userList = new List<User>();
+        int userListIndex = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,24 +31,52 @@ namespace Labb5
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
-            string usersInputName = usersName.Text;
-            string usersInputEmail = usersEmail.Text;
-            userList.Add(new User(usersInputName, usersInputEmail));
+            if (UsersInputIsInvalid(usersName.Text, usersEmail.Text)) { }
+            else
+            {
+                string usersInputName = usersName.Text.Trim();
+                string usersInputEmail = usersEmail.Text.Trim();
 
+                userList.Add(new User(usersInputName, usersInputEmail));
+
+                listBox.Items.Add(userList[userListIndex].UserName);
+                userListIndex++;
+
+
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private bool UsersInputIsInvalid(string usersInputName, string usersInputEmail)
         {
-            // Displays the username of the user in the first index of userList.
-            MessageBox.Show(userList[0].UserName, "User");
+            if (string.IsNullOrEmpty(usersInputName) ||
+                string.IsNullOrEmpty(usersInputEmail) ||
+                string.IsNullOrWhiteSpace(usersInputName) ||
+                string.IsNullOrWhiteSpace(usersInputEmail))
+            {
+                MessageBox.Show("Null or single WhiteSpace not allowed in either field.\n" +
+                    "Try again.", "INVALID_INPUT");
+
+                return true;
+            }
+            else
+                return false;
         }
 
-        //private void PrintList()
-        //{
-        //    foreach (var item in userList)
-        //    {
-        //        Console.WriteLine(item);
-        //    }
-        //}
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersInputIsInvalid(usersName.Text, usersEmail.Text)) { }
+            else
+            {
+                string usersInputName = usersName.Text.Trim();
+                string usersInputEmail = usersEmail.Text.Trim();
+
+                userList[listBox.SelectedIndex].UserName = usersInputName;
+                userList[listBox.SelectedIndex].UserEmail = usersInputEmail;
+
+                listBox.Items.Insert(listBox.SelectedIndex, userList[listBox.SelectedIndex].UserName);
+                listBox.Items.RemoveAt(listBox.SelectedIndex);
+            }
+        }
     }
 }

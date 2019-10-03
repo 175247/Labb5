@@ -14,8 +14,20 @@
         <Button Name="register" Content="Register" HorizontalAlignment="Left" Margin="84,89,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRegister_Click"/>
         <Label Content="Username: " HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.913,3.308"/>
         <Label Content="Email: " HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.705,3"/>
-        <Button Content="PrintNames" HorizontalAlignment="Left" Margin="84,153,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <ListBox HorizontalAlignment="Left" Height="100" Margin="432,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox Name="listBox" HorizontalAlignment="Left" Height="100" Margin="432,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <!-- Disable the button unless an element in the listBox is selected. -->
+        <Button Name="edit" Content="Edit User" HorizontalAlignment="Left" Margin="432,128,0,0" VerticalAlignment="Top" Width="75" Click="ButtonEdit_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=listBox, Path=SelectedIndex.Count}" Value="-1">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 
 </Window>
