@@ -20,9 +20,33 @@ namespace Labb5
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<User> userList = new List<User>();
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
+
+        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
+        {
+            string usersInputName = usersName.Text;
+            string usersInputEmail = usersEmail.Text;
+            userList.Add(new User(usersInputName, usersInputEmail));
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Displays the username of the user in the first index of userList.
+            MessageBox.Show(userList[0].UserName, "User");
+        }
+
+        //private void PrintList()
+        //{
+        //    foreach (var item in userList)
+        //    {
+        //        Console.WriteLine(item);
+        //    }
+        //}
     }
 }

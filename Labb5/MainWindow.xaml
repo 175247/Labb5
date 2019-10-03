@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Labb5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="337.832" Width="709.268" ResizeMode="NoResize">
     <Grid>
-        
+        <!-- Name="x" is a property, identifying the module -->
+        <!-- Name="userName" identifies the textbox for "Username:" -->
+        <TextBox Name="usersName" Text="" Margin="84,10,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="120" Height="23" VerticalAlignment="Top"/>
+        <TextBox Name="usersEmail" Text="" Margin="84,49,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="120" Height="23" VerticalAlignment="Top" />
+        <Button Name="register" Content="Register" HorizontalAlignment="Left" Margin="84,89,0,0" VerticalAlignment="Top" Width="75" Click="ButtonRegister_Click"/>
+        <Label Content="Username: " HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.913,3.308"/>
+        <Label Content="Email: " HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.705,3"/>
+        <Button Content="PrintNames" HorizontalAlignment="Left" Margin="84,153,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="432,10,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
+
 </Window>
